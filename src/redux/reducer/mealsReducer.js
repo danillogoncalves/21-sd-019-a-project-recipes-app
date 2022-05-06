@@ -3,12 +3,15 @@ import {
   SEARCH_CATEGORY,
   SEARCH_MEAL_ID,
   SEARCH_MEAL_RANDOM,
+  SEARCH_NATIONALY_LIST,
+  SEARCH_NATIONALY,
   SEARCH_MEALS_INGREDIENTS,
 } from '../action';
 
 const INITIAL_STATE = {
   meals: [],
   meal: {},
+  nationalyList: [],
   ingredients: [],
 };
 
@@ -33,6 +36,16 @@ const mealsReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       meal: action.mealRandom[0],
+    };
+  case SEARCH_NATIONALY_LIST:
+    return {
+      ...state,
+      nationalyList: action.nationalityList,
+    };
+  case SEARCH_NATIONALY:
+    return {
+      ...state,
+      meals: action.nationality,
     };
   case SEARCH_MEALS_INGREDIENTS:
     return {

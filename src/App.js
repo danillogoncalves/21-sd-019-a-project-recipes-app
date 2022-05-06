@@ -17,6 +17,7 @@ import ExploreMealsNationality from './pages/ExploreMealsNationality';
 import DoneRecipes from './pages/DoneRecipes';
 import RecipeMealsInProgress from './pages/RecipeMealsInProgress';
 import RecipeDrinksInProgress from './pages/RecipeDrinksInProgress';
+import NotFound from './pages/NotFound';
 
 function App() {
   function createLocalStorageInProgressAndDone() {
@@ -63,6 +64,7 @@ function App() {
         component={ ExploreMealsNationality }
       />
       <Route exact path="/done-recipes" component={ DoneRecipes } />
+      <Route exact path="/explore/drinks/nationalities" component={ NotFound } />
     </Switch>
   );
 }

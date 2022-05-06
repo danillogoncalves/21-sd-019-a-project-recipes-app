@@ -19,6 +19,7 @@ export default function CardMeals({ mazimumArraySize, testid }) {
           >
             <img
               data-testid={ `${index}-card-img` }
+              style={ { width: '120px' } }
               src={ meal.strMealThumb }
               alt={ meal.strMeal }
             />

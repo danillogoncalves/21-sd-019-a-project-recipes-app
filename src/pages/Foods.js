@@ -27,12 +27,9 @@ export default function Foods(props) {
   }
 
   useEffect(() => {
-    console.log(loading);
     if (loading) {
-      console.log('ALOU');
       dispatch(callApiFoods('', 'all'));
     }
-    console.log('FORA DO IF');
     dispatch(callApiFoods('', 'categories'));
     dispatch(loadingAll(true));
   // eslint-disable-next-line react-hooks/exhaustive-deps
