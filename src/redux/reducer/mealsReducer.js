@@ -4,6 +4,7 @@ import {
   SEARCH_MEAL_ID,
   SEARCH_MEAL_RANDOM,
   SEARCH_NATIONALY_LIST,
+  SEARCH_NATIONALY,
 } from '../action';
 
 const INITIAL_STATE = {
@@ -38,6 +39,11 @@ const mealsReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       nationalyList: action.nationalityList,
+    };
+  case SEARCH_NATIONALY:
+    return {
+      ...state,
+      meals: action.nationality,
     };
   default:
     return state;

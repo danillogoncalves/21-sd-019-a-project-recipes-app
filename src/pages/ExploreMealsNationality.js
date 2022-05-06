@@ -3,21 +3,30 @@ import { useDispatch, useSelector } from 'react-redux';
 import CardMeals from '../components/CardMeals';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { callApiFoods, callApiMealsNationalityList } from '../redux/action/actionsAsysc';
+import {
+  callApiFoods,
+  callApiMealsNationality,
+  callApiMealsNationalityList,
+} from '../redux/action/actionsAsysc';
 
 export default function ExploreMealsNationality() {
   const dispatch = useDispatch();
   const nationalyList = useSelector((state) => state.mealsReducer.nationalyList);
   const [list, setList] = useState('All');
 
+  function requestFilter(value) {
+    if (value === 'All') {
+      dispatch(callApiFoods('', 'all'));
+    } else {
+      dispatch(callApiMealsNationality(value));
+    }
+  }
+
   function handleChange({ target }) {
     const { value } = target;
     setList(value);
+    requestFilter(value);
   }
-
-  // https://www.themealdb.com/api/json/v1/1/filter.php?a=Canadian
-
-  // function list
 
   useEffect(() => {
     dispatch(callApiFoods('', 'all'));
@@ -25,7 +34,6 @@ export default function ExploreMealsNationality() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(nationalyList);
   return (
     <div>
       <Header title="Explore Nationalities" search />

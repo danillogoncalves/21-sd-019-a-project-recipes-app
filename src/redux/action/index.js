@@ -7,6 +7,7 @@ export const SEARCH_MEAL_ID = 'SEARCH_MEAL_ID';
 export const SEARCH_DRINK_ID = 'SEARCH_DRINK_ID';
 export const SEARCH_MEAL_RANDOM = 'SEARCH_MEAL_RANDOM';
 export const SEARCH_DRINK_RANDOM = 'SEARCH_DRINK_RANDOM';
+export const LOADING_ALL = 'LOADING_ALL';
 export const SEARCH_NATIONALY_LIST = 'SEARCH_NATIONALY_LIST';
 export const SEARCH_NATIONALY = 'SEARCH_NATIONALY';
 
@@ -49,6 +50,10 @@ export const getMelsNationalityList = (nationalityList) => ({
   type: SEARCH_NATIONALY_LIST, nationalityList,
 });
 
-/* export const getMelsNationality = (nationality) => ({
-  type:
-}) */
+export const loadingAll = (loading) => ({
+  type: LOADING_ALL, loading,
+});
+
+export const getMelsNationality = (nationality) => ({
+  type: SEARCH_NATIONALY, nationality,
+});
