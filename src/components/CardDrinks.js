@@ -19,6 +19,7 @@ export default function CardDrinks({ mazimumArraySize, testid }) {
           >
             <img
               data-testid={ `${index}-card-img` }
+              style={ { width: '120px' } }
               src={ drink.strDrinkThumb }
               alt={ drink.strDrink }
             />

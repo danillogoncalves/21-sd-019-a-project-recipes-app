@@ -7,6 +7,8 @@ export const SEARCH_MEAL_ID = 'SEARCH_MEAL_ID';
 export const SEARCH_DRINK_ID = 'SEARCH_DRINK_ID';
 export const SEARCH_MEAL_RANDOM = 'SEARCH_MEAL_RANDOM';
 export const SEARCH_DRINK_RANDOM = 'SEARCH_DRINK_RANDOM';
+export const SEARCH_NATIONALY_LIST = 'SEARCH_NATIONALY_LIST';
+export const SEARCH_NATIONALY = 'SEARCH_NATIONALY';
 
 export const userLogin = (email) => ({
   type: LOGIN, email });
@@ -42,3 +44,11 @@ export const getMealRandom = (mealRandom) => ({
 export const getDrinkRandom = (drinkRandom) => ({
   type: SEARCH_DRINK_RANDOM, drinkRandom,
 });
+
+export const getMelsNationalityList = (nationalityList) => ({
+  type: SEARCH_NATIONALY_LIST, nationalityList,
+});
+
+/* export const getMelsNationality = (nationality) => ({
+  type:
+}) */
