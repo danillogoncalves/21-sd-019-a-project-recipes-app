@@ -12,7 +12,6 @@ export default function ExploreMealsIngredients() {
   const doze = 12;
   const ingredients = useSelector((state) => state.mealsReducer.ingredients);
   const showIngredients = ingredients.slice(0, doze);
-  console.log(showIngredients);
 
   useEffect(() => {
     dispatch(callApiMealIngredients());

@@ -13,7 +13,6 @@ export const SEARCH_NATIONALY = 'SEARCH_NATIONALY';
 export const SEARCH_DRINK_INGREDIENTS = 'SEARCH_DRINK_INGREDIENTS';
 export const SEARCH_MEALS_INGREDIENTS = 'SEARCH_MEALS_INGREDIENTS';
 
-
 export const userLogin = (email) => ({
   type: LOGIN, email });
 
@@ -59,6 +58,7 @@ export const loadingAll = (loading) => ({
 
 export const getMelsNationality = (nationality) => ({
   type: SEARCH_NATIONALY, nationality,
+});
 
 export const getDrinkIngredients = (drinkIngredients) => ({
   type: SEARCH_DRINK_INGREDIENTS, drinkIngredients,

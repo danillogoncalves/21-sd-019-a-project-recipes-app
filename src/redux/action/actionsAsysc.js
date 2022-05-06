@@ -121,7 +121,6 @@ export const callApiDrinkRandom = () => async (dispatch) => {
   return dispatch(getDrinkRandom(response.drinks));
 };
 
-
 export const callApiMealsNationalityList = () => async (dispatch) => {
   const response = await requestMealsNationalityList();
   return dispatch(getMelsNationalityList(response.meals));
@@ -130,15 +129,14 @@ export const callApiMealsNationalityList = () => async (dispatch) => {
 export const callApiMealsNationality = (nationality) => async (dispatch) => {
   const response = await requestMealsNationality(nationality);
   return dispatch(getMelsNationality(response.meals));
+};
 
 export const callApiDrinkIngredients = () => async (dispatch) => {
   const response = await requestDrinkIngredients();
-  console.log(response);
   return dispatch(getDrinkIngredients(response.drinks));
 };
 
 export const callApiMealIngredients = () => async (dispatch) => {
   const response = await requestMealIngredients();
-  console.log(response);
   return dispatch(getMealsIngredients(response.meals));
 };

@@ -9,7 +9,6 @@ export default function ExploreDrinks() {
   const history = useHistory();
   const dispatch = useDispatch();
   const drink = useSelector((state) => state.drinksReducer.drink);
-  console.log(drink);
 
   useEffect(() => {
     dispatch(callApiDrinkRandom());
