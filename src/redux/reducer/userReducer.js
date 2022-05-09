@@ -5,6 +5,7 @@ const INITIAL_STATE = {
 };
 
 function userReducer(state = INITIAL_STATE, action) {
+  console.log(action.email);
   switch (action.type) {
   case LOGIN:
     return {
