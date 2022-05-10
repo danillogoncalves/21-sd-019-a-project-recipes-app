@@ -3,9 +3,9 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import waitForExpect from 'wait-for-expect';
 import fetchRequest from '../../cypress/mocks/fetch';
+import App from '../App';
 import { listDrinksOrdinaryDrink } from '../tests/mocks/listItems';
 import renderWithRedux from '../tests/renderWithRedux';
-import App from '../App';
 
 function handleTheSearch(search) {
   const buttonImgSearch = screen.getByTestId('search-top-btn');
@@ -117,4 +117,31 @@ describe('Testando a tela de Drinks', () => {
 
     handleTheSearch('Aquamarine');
   });
+  it('Verifica se é possível clicar no radio buttons de ingredients e first letter', () => {
+    renderWithRedux(<App />, '/drinks');
+    const buttonImgSearch = screen.getByTestId('search-top-btn');
+    userEvent.click(buttonImgSearch);
+    const radioIngredient = screen.getByTestId('ingredient-search-radio');
+    userEvent.click(radioIngredient);
+    const radioLetter = screen.getByTestId('first-letter-search-radio');
+    userEvent.click(radioLetter);
+  });
+  it('Verifica se aparece o alert se digitar mais de uma letra na busca de first letter', async () => {
+    renderWithRedux(<App />, '/drinks');
+    window.alert = jest.fn();
+    const buttonImgSearch = screen.getByTestId('search-top-btn');
+    userEvent.click(buttonImgSearch);
+    const radioLetter = screen.getByTestId('first-letter-search-radio');
+    userEvent.click(radioLetter);
+    const inputSearch = screen.getByPlaceholderText(/search recipe/i);
+    userEvent.type(inputSearch, 'br');
+    const buttonSearch = screen.getByTestId('exec-search-btn');
+    userEvent.click(buttonSearch);
+    await waitForExpect(() => {
+      expect(fetch).toHaveBeenCalled();
+    });
+    await waitForExpect(() => {
+      expect(window.alert).toHaveBeenCalledTimes(1);
+    });
+  })
 });
