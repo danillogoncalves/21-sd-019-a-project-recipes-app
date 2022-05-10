@@ -2,35 +2,35 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import renderWithRedux from '../tests/renderWithRedux';
-import Login from './Login';
+import App from '../App';
 
 describe('Testando a tela de Login', () => {
   it('Tem o titulo Login?', () => {
-    renderWithRedux(<Login />);
+    renderWithRedux(<App />, '/');
     const heading = screen.getByRole('heading', { name: /login/i, level: 1 });
     expect(heading).toBeInTheDocument();
   });
 
   it('Tem o input para o Email?', () => {
-    renderWithRedux(<Login />);
+    renderWithRedux(<App />, '/');
     const inputEmail = screen.getByPlaceholderText(/email/i);
     expect(inputEmail).toBeInTheDocument();
   });
 
   it('Tem o input para o Password?', () => {
-    renderWithRedux(<Login />);
+    renderWithRedux(<App />, '/');
     const inputPassword = screen.getByPlaceholderText(/password/i);
     expect(inputPassword).toBeInTheDocument();
   });
 
   it('Tem o button Enter?', () => {
-    renderWithRedux(<Login />);
+    renderWithRedux(<App />, '/');
     const button = screen.getByRole('button', { name: /enter/i });
     expect(button).toBeInTheDocument();
   });
 
   it('Ao clicar no botão Enter, deve ser direcionado para "/foods"', () => {
-    const { history, store } = renderWithRedux(<Login />);
+    const { history, store } = renderWithRedux(<App />, '/');
     const inputEmail = screen.getByPlaceholderText(/email/i);
     const inputPassword = screen.getByPlaceholderText(/password/i);
     const button = screen.getByRole('button', { name: /enter/i });

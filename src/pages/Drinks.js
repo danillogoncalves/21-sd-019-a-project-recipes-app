@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import CardDrinks from '../components/CardDrinks';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { loadingAll } from '../redux/action';
 import { callApiDrinks } from '../redux/action/actionsAsysc';
 
-export default function Drinks(props) {
-  const { history } = props;
+export default function Drinks() {
+  const history = useHistory();
   const drinks = useSelector((state) => state.drinksReducer.drinks);
   const loading = useSelector((state) => state.loadingAllReducer.loadingAll);
 
@@ -89,7 +89,3 @@ export default function Drinks(props) {
     )
   );
 }
-
-Drinks.propTypes = {
-  history: PropTypes.objectOf(PropTypes.any).isRequired,
-};

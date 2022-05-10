@@ -9,6 +9,7 @@ import rootReducer from '../redux/reducer';
 
 export default function renderWithRedux(
   component,
+  route,
   {
     initialState,
     store = configureStore({
@@ -18,7 +19,7 @@ export default function renderWithRedux(
     }),
   } = {},
 ) {
-  const customHistory = createMemoryHistory();
+  const customHistory = createMemoryHistory({ initialEntries: [route] });
 
   const returnFromRender = render(
     <Router history={ customHistory }>

@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import waitForExpect from 'wait-for-expect';
 import fetchRequest from '../../cypress/mocks/fetch';
-import { listFoodsBeef } from '../tests/mocks/listItems';
+import { listDrinksOrdinaryDrink } from '../tests/mocks/listItems';
 import renderWithRedux from '../tests/renderWithRedux';
 import App from '../App';
 
@@ -18,7 +18,7 @@ function handleTheSearch(search) {
   userEvent.click(buttonSearch);
 }
 
-describe('Testando a tela de Foods', () => {
+describe('Testando a tela de Drinks', () => {
   beforeEach(() => {
     global.fetch = jest.fn().mockImplementation((url) => fetchRequest(url));
   });
@@ -27,14 +27,14 @@ describe('Testando a tela de Foods', () => {
     jest.clearAllMocks();
   });
 
-  it('Tem "Foods" no titulo da tela', () => {
-    renderWithRedux(<App />, '/foods');
-    const title = screen.getByText(/foods/i);
+  it('Tem "Drinks" no titulo da tela', () => {
+    renderWithRedux(<App />, '/drinks');
+    const title = screen.getByText(/drinks/i);
     expect(title).toBeInTheDocument();
   });
 
   it('Tem o Botão do Profile no Header e redireciona para sua página?', () => {
-    const { history } = renderWithRedux(<App />, '/foods');
+    const { history } = renderWithRedux(<App />, '/drinks');
     const buttonProfile = screen.getByTestId('profile-top-btn');
     expect(buttonProfile).toBeInTheDocument();
 
@@ -45,7 +45,7 @@ describe('Testando a tela de Foods', () => {
   });
 
   it('Tem o Botão do Search no Hearder?', () => {
-    renderWithRedux(<App />, '/foods');
+    renderWithRedux(<App />, '/drinks');
     const buttonImgSearch = screen.getByTestId('search-top-btn');
     expect(buttonImgSearch).toBeInTheDocument();
 
@@ -70,19 +70,20 @@ describe('Testando a tela de Foods', () => {
     expect(inputSearch).not.toBeInTheDocument();
   });
 
-  it('Tem os buttons de cada categoria de foods?', async () => {
-    renderWithRedux(<App />, '/foods');
-    const buttonBeef = await screen.findByTestId('Beef-category-filter');
-    expect(buttonBeef).toBeInTheDocument();
+  it('Tem os buttons de cada categoria de drinks?', async () => {
+    renderWithRedux(<App />, '/drinks');
+    const buttonOrdinaryDrink = await screen
+      .findByTestId('Ordinary Drink-category-filter');
+    expect(buttonOrdinaryDrink).toBeInTheDocument();
 
-    userEvent.click(buttonBeef);
-    const listFoods = await screen.findAllByTestId(/recipe-card/i);
+    userEvent.click(buttonOrdinaryDrink);
+    const listDrinks = await screen.findAllByTestId(/recipe-card/i);
 
-    listFoods.forEach(
+    listDrinks.forEach(
       async (_item, index) => {
         const cardImg = await screen.findByTestId(`${index}-card-img`);
         expect(cardImg).toBeInTheDocument();
-        const name = await screen.findByText(listFoodsBeef[index]);
+        const name = await screen.findByText(listDrinksOrdinaryDrink[index]);
         expect(name).toBeInTheDocument();
       },
     );
@@ -90,14 +91,14 @@ describe('Testando a tela de Foods', () => {
     const buttonAll = await screen.findByTestId('All-category-filter');
     userEvent.click(buttonAll);
 
-    const buttonGoat = await screen.findByTestId('Goat-category-filter');
-    userEvent.click(buttonGoat);
+    const buttonCocoa = await screen.findByTestId('Cocoa-category-filter');
+    userEvent.click(buttonCocoa);
 
-    userEvent.click(buttonGoat);
+    userEvent.click(buttonCocoa);
   });
 
   it('Pesquisa com name NULL, abre mensagem de alerta.', async () => {
-    renderWithRedux(<App />, '/foods');
+    renderWithRedux(<App />, '/drinks');
     window.alert = jest.fn();
 
     handleTheSearch('xablau');
@@ -112,8 +113,8 @@ describe('Testando a tela de Foods', () => {
   });
 
   it('Ao pesquisar name que só tenha uma receita.', () => {
-    renderWithRedux(<App />, '/foods');
+    renderWithRedux(<App />, '/drinks');
 
-    handleTheSearch('Arrabiata');
+    handleTheSearch('Aquamarine');
   });
 });

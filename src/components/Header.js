@@ -13,7 +13,6 @@ function Header({ search, title }) {
       <Link to="/profile">
         <button
           type="button"
-          onClick={ (props) => console.log(props) }
         >
           <img data-testid="profile-top-btn" alt="profileIcon" src={ profileIcon } />
         </button>
