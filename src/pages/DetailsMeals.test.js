@@ -1,9 +1,12 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import fetchRequest from '../../cypress/mocks/fetch';
 import renderWithRedux from '../tests/renderWithRedux';
 import App from '../App';
 import { listOneMeal } from '../tests/mocks/listItems';
+
+const ROUTE = '/foods/52771';
 
 describe('Testando a tela de Detalhe das Comidas', () => {
   beforeEach(() => {
@@ -15,8 +18,8 @@ describe('Testando a tela de Detalhe das Comidas', () => {
   });
 
   it('Itens na tela', async () => {
-    const { history } = renderWithRedux(<App />, '/foods/52771');
-    expect(history.location.pathname).toBe('/foods/52771');
+    const { history } = renderWithRedux(<App />, ROUTE);
+    expect(history.location.pathname).toBe(ROUTE);
 
     const recibePhoto = await screen.findByTestId('recipe-photo');
     expect(recibePhoto).toBeInTheDocument();
@@ -42,5 +45,34 @@ describe('Testando a tela de Detalhe das Comidas', () => {
     const headingInstructions = screen
       .getByRole('heading', { name: /instructions/i });
     expect(headingInstructions).toBeInTheDocument();
+  });
+
+  it('', () => {
+    const { history } = renderWithRedux(<App />, ROUTE);
+
+    const buttonStartRecipe = screen.getByTestId(/start-recipe-btn/i);
+    expect(buttonStartRecipe).toBeInTheDocument();
+
+    userEvent.click(buttonStartRecipe);
+
+    expect(history.location.pathname).toBe('/foods/52771/in-progress');
+  });
+
+  it('', () => {
+    renderWithRedux(<App />, ROUTE);
+    Object.assign(window.navigator, {
+      clipboard: {
+        writeText: jest.fn().mockImplementation(() => Promise.resolve()),
+      },
+    });
+
+    const buttonShare = screen.getByTestId(/share-btn/i);
+    expect(buttonShare).toBeInTheDocument();
+
+    // console.log(window.navigator.clipboard.writeText);
+    userEvent.click(buttonShare);
+    const linkCopied = screen.getByText(/link copied/i);
+    expect(linkCopied).toBeInTheDocument();
+    // share-bt
   });
 });
