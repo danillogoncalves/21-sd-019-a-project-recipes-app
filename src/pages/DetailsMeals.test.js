@@ -56,6 +56,14 @@ describe('Testando a tela de Detalhe das Comidas', () => {
     userEvent.click(buttonStartRecipe);
 
     expect(history.location.pathname).toBe('/foods/52771/in-progress');
+
+    history.goBack();
+
+    const buttonContinueRecipe = screen
+      .getByRole('button', { name: /continue recipe/i });
+    expect(buttonContinueRecipe).toBeInTheDocument();
+
+    userEvent.click(buttonContinueRecipe);
   });
 
   it('', () => {
@@ -69,10 +77,39 @@ describe('Testando a tela de Detalhe das Comidas', () => {
     const buttonShare = screen.getByTestId(/share-btn/i);
     expect(buttonShare).toBeInTheDocument();
 
-    // console.log(window.navigator.clipboard.writeText);
     userEvent.click(buttonShare);
     const linkCopied = screen.getByText(/link copied/i);
     expect(linkCopied).toBeInTheDocument();
-    // share-bt
+  });
+
+  it('', () => {
+    renderWithRedux(<App />, ROUTE);
+
+    const buttonFavorite = screen.getByTestId(/favorite-btn/i);
+    expect(buttonFavorite).toBeInTheDocument();
+
+    userEvent.click(buttonFavorite);
+    userEvent.click(buttonFavorite);
+  });
+
+  it('', () => {
+    renderWithRedux(<App />, ROUTE);
+    const buttonContinueRecipe = screen
+      .getByRole('button', { name: /continue recipe/i });
+    expect(buttonContinueRecipe).toBeInTheDocument();
+
+    localStorage.setItem('doneRecipes', JSON.stringify([
+      {
+        id: '17225',
+        type: 'bebida',
+        nationality: '',
+        category: 'Cocktail',
+        alcoholicOrNot: 'Alcoholic',
+        name: 'Ace',
+        image: 'https://www.thecocktaildb.com/images/media/drink/l3cd7f1504818306.jpg',
+        doneDate: '05/05/2022',
+        tags: [],
+      },
+    ]));
   });
 });
