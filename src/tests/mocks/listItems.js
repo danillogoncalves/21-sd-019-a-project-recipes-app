@@ -97,3 +97,9 @@ export const listOneMeal = [
   'basil - 6 leaves',
   'Parmigiano-Reggiano - spinkling',
 ];
+
+export const listOneDrink = [
+  'Galliano - 2 1/2 shots ',
+  'Ginger ale',
+  'Ice',
+];
