@@ -38,5 +38,9 @@ describe('Testando a tela de Detalhe das Comidas', () => {
         expect(item.innerHTML).toBe(listOneMeal[index]);
       },
     );
+
+    const headingInstructions = screen
+      .getByRole('heading', { name: /instructions/i });
+    expect(headingInstructions).toBeInTheDocument();
   });
 });
