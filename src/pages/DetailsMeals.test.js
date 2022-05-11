@@ -47,7 +47,7 @@ describe('Testando a tela de Detalhe das Comidas', () => {
     expect(headingInstructions).toBeInTheDocument();
   });
 
-  it('', () => {
+  it('1', () => {
     const { history } = renderWithRedux(<App />, ROUTE);
 
     const buttonStartRecipe = screen.getByTestId(/start-recipe-btn/i);
@@ -66,7 +66,7 @@ describe('Testando a tela de Detalhe das Comidas', () => {
     userEvent.click(buttonContinueRecipe);
   });
 
-  it('', () => {
+  it('2', () => {
     renderWithRedux(<App />, ROUTE);
     Object.assign(window.navigator, {
       clipboard: {
@@ -82,7 +82,7 @@ describe('Testando a tela de Detalhe das Comidas', () => {
     expect(linkCopied).toBeInTheDocument();
   });
 
-  it('', () => {
+  it('3', () => {
     renderWithRedux(<App />, ROUTE);
 
     const buttonFavorite = screen.getByTestId(/favorite-btn/i);
@@ -92,7 +92,7 @@ describe('Testando a tela de Detalhe das Comidas', () => {
     userEvent.click(buttonFavorite);
   });
 
-  it('', () => {
+  it('4', () => {
     renderWithRedux(<App />, ROUTE);
     const buttonContinueRecipe = screen
       .getByRole('button', { name: /continue recipe/i });
