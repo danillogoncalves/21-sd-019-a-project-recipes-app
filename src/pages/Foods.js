@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import CardMeals from '../components/CardMeals';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { loadingAll } from '../redux/action';
 import { callApiFoods } from '../redux/action/actionsAsysc';
 
-export default function Foods(props) {
-  const { history } = props;
+export default function Foods() {
+  const history = useHistory();
   const foods = useSelector((state) => state.mealsReducer.meals);
   const [goat, setGoat] = useState('');
   const [filter, setFilter] = useState('');
@@ -96,7 +96,3 @@ export default function Foods(props) {
     )
   );
 }
-
-Foods.propTypes = {
-  history: PropTypes.objectOf(PropTypes.any).isRequired,
-};

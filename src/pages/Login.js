@@ -20,6 +20,8 @@ function Login() {
     const savedEmail = JSON.stringify({ email });
     localStorage.setItem('user', savedEmail);
 
+    dispatch(userLogin(email));
+
     history.push('/foods');
   };
 
@@ -54,7 +56,6 @@ function Login() {
           name="email"
           value={ email }
           onChange={ handleChange }
-          /* onChange={ (({ target }) => setEmail(target.value), handleLoginValidation) } */
         />
         <input
           type="password"
@@ -63,12 +64,11 @@ function Login() {
           value={ password }
           name="password"
           onChange={ handleChange }
-          /* onChange={ (({ target }) => setPassword(target.value), handleLoginValidation) } */
         />
         <button
           data-testid="login-submit-btn"
           type="submit"
-          onClick={ (() => dispatch(userLogin(email)), handleLocalStorage) }
+          onClick={ handleLocalStorage }
           disabled={ buttonDisabled }
         >
           Enter
