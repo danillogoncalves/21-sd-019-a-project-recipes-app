@@ -49,4 +49,13 @@ describe('Testando a tela de Comidas em Progresso', () => {
 
     expect(history.location.pathname).toBe('/done-recipes');
   });
+
+  it('3', async () => {
+    renderWithRedux(<App />, ROUTE);
+    const ingredientStep = await screen.findByTestId('0-ingredient-step');
+    expect(ingredientStep).toBeInTheDocument();
+
+    userEvent.click(ingredientStep);
+    // 0-ingredient-step
+  });
 });

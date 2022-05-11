@@ -6,7 +6,7 @@ import fetchRequest from '../../cypress/mocks/fetch';
 import renderWithRedux from '../tests/renderWithRedux';
 import App from '../App';
 
-const exploreFoods = '/explore/foods';
+const exploreDrinks = '/explore/drinks';
 
 describe('Testando a página Explore Meals', () => {
   beforeEach(() => {
@@ -18,34 +18,24 @@ describe('Testando a página Explore Meals', () => {
   });
 
   it('Verifica se o button By Ingredient existe e direciona para a sua pagina', () => {
-    const { history } = renderWithRedux(<App />, exploreFoods);
+    const { history } = renderWithRedux(<App />, exploreDrinks);
 
     const buttonByIngredient = screen.getByRole('button', { name: /by ingredient/i });
     expect(buttonByIngredient).toBeInTheDocument();
     userEvent.click(buttonByIngredient);
     const exploreIngredients = history.location.pathname;
-    expect(exploreIngredients).toBe('/explore/foods/ingredients');
-  });
-
-  it('Verifica se o button By Nationality existe e direciona para a sua pagina', () => {
-    const { history } = renderWithRedux(<App />, exploreFoods);
-
-    const buttonByNationality = screen.getByRole('button', { name: /by nationality/i });
-    expect(buttonByNationality).toBeInTheDocument();
-    userEvent.click(buttonByNationality);
-    const exploreNationalities = history.location.pathname;
-    expect(exploreNationalities).toBe('/explore/foods/nationalities');
+    expect(exploreIngredients).toBe('/explore/drinks/ingredients');
   });
 
   it('Verifica se o button Surprise existe e direciona para a sua pagina', async () => {
-    const { store } = renderWithRedux(<App />, exploreFoods);
+    const { store } = renderWithRedux(<App />, exploreDrinks);
 
     const buttonSurprise = screen.getByRole('button', { name: /surprise me!/i });
     expect(buttonSurprise).toBeInTheDocument();
 
     await waitForExpect(() => {
-      const supriseId = store.getState().mealsReducer.meal;
-      expect(supriseId.idMeal).toBe('52771');
+      const supriseId = store.getState().drinksReducer.drink;
+      expect(supriseId.idDrink).toBe('178319');
     });
 
     userEvent.click(buttonSurprise);

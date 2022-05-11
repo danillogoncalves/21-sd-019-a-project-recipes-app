@@ -21,8 +21,6 @@ export default function DetailsDrinks(props) {
   const drink = useSelector((state) => state.drinksReducer.drink);
   const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
-  console.log(drink);
-
   useEffect(() => {
     dispatch(callApiDrinkOfId(drinkId));
     dispatch(callApiFoods('', 'all'));
@@ -68,8 +66,6 @@ export default function DetailsDrinks(props) {
         </button>
       );
     }
-
-    console.log(favoriteButton);
 
     return (
       <button
